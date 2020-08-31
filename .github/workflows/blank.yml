@@ -13,7 +13,9 @@ jobs:
       matrix:
         ros_distro: [kinetic, melodic, noetic]
 
-    runs-on: ${{matrix.ros_distro}}-ros-base
+    runs-on: ubuntu-latest
+    container:
+      image: ros:${{matrix.ros_distro}}-ros-base
 
     steps:
       - uses: actions/checkout@v2
