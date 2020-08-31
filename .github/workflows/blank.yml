@@ -49,4 +49,4 @@ jobs:
           cd ws
           ls
           . devel_isolated/setup.sh
-          catkin_make_isolated --pkg ixblue_ins_driver --make-args run_tests
+          catkin_make_isolated --pkg ixblue_ins_driver --install --make-args run_tests
