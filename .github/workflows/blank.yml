@@ -41,11 +41,11 @@ jobs:
       - name: Build WS
         run: |
           cd ws
-          source /opt/ros/${{matrix.ros_distro}}/setup.bash
+          . /opt/ros/${{matrix.ros_distro}}/setup.bash
           catkin_make_isolated --install
       
       - name: Test
         run: |
           cd ws
-          source /opt/ros/${{matrix.ros_distro}}/setup.bash
+          . /opt/ros/${{matrix.ros_distro}}/setup.bash
           catkin_make_isolated --make-args run_tests
