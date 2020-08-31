@@ -39,7 +39,13 @@ jobs:
           rosdep install --from-paths src --ignore-src -r -y
       
       - name: Build WS
-        run: cd ws && catkin_make_isolated --install
+        run: |
+          cd ws
+          source /opt/ros/${{matrix.ros_distro}}/setup.bash
+          catkin_make_isolated --install
       
       - name: Test
-        run: cd ws && catkin_make_isolated --make-args run_tests
+        run: |
+          cd ws
+          source /opt/ros/${{matrix.ros_distro}}/setup.bash
+          catkin_make_isolated --make-args run_tests
