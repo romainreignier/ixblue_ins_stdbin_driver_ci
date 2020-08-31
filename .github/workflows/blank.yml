@@ -48,5 +48,5 @@ jobs:
         run: |
           cd ws
           ls
-          . /opt/ros/${{matrix.ros_distro}}/setup.sh
+          . devel_isolated/setup.sh
           catkin_make_isolated --make-args run_tests
