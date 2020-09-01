@@ -10,20 +10,16 @@ jobs:
 
   build:
     name: ROS ${{matrix.ros_distro}} on ${{matrix.distro}}
+    if: |
+      ${{ (matrix.ros_distro == "kinetic" && matrix.distro == "xenial") ||
+          (matrix.ros_distro == "melodic" && matrix.distro == "bionic") ||
+          (matrix.ros_distro == "melodic" && matrix.distro == "stretch") ||
+          (matrix.ros_distro == "noetic" && matrix.distro == "focal") ||
+          (matrix.ros_distro == "noetic" && matrix.distro == "buster")}}
     strategy:
       matrix:
         ros_distro: [kinetic, melodic, noetic]
-        include:
-          - ros_distro: kinetic
-            distro: xenial
-          - ros_distro: melodic
-            distro: bionic
-          - ros_distro: melodic
-            distro: stretch
-          - ros_distro: noetic
-            distro: focal
-          - ros_distro: noetic
-            distro: buster
+        distro: [xenial, bionic, focal, stretch, buster]
 
     runs-on: ubuntu-latest
     container:
