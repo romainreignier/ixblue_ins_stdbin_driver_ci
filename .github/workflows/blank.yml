@@ -9,13 +9,25 @@ on:
 jobs:
 
   build:
+    name: ROS ${{matrix.ros_distro}} on ${{matrix.distro}}
     strategy:
       matrix:
         ros_distro: [kinetic, melodic, noetic]
+        include:
+          - ros_distro: kinetic
+            distro: xenial
+          - ros_distro: melodic
+            distro: bionic
+          - ros_distro: melodic
+            distro: stretch
+          - ros_distro: noetic
+            distro: focal
+          - ros_distro: noetic
+            distro: buster
 
     runs-on: ubuntu-latest
     container:
-      image: ros:${{matrix.ros_distro}}-ros-base
+      image: ros:${{matrix.ros_distro}}-ros-base-${{matrix.distro}}
 
     steps:
       - uses: actions/checkout@v2
